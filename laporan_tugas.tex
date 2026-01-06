@@ -1,0 +1,119 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[indonesian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{url}
+
+% Margin settings (Normal: 2.54cm top/bottom, 2.54cm left/right is standard "Normal")
+\geometry{
+    a4paper,
+    left=2.54cm,
+    right=2.54cm,
+    top=2.54cm,
+    bottom=2.54cm,
+}
+
+% Font setting: Times New Roman is standard. We use times package if available.
+\usepackage{mathptmx}
+
+% Spacing 1.15
+\setstretch{1.15}
+
+\title{\textbf{TUGAS KECERDASAN BUATAN}\\Deteksi Penyakit Tanaman Pangan Menggunakan Metode Deep Learning (Convolutional Neural Networks)}
+\author{Nama Mahasiswa}
+\date{10 Januari 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Permasalahan: Serangan Hama dan Penyakit pada Tanaman}
+
+Sektor pertanian di Indonesia menghadapi tantangan besar dalam menjaga produktivitas pangan nasional. Salah satu faktor utama yang menyebabkan penurunan hasil panen secara signifikan adalah serangan hama dan penyakit tanaman. Berdasarkan ulasan kondisi pertanian, terdapat tiga aspek krusial terkait permasalahan ini yang perlu mendapat perhatian mendalam:
+
+\textbf{1. Keterlambatan Deteksi Dini} \\
+Penyakit pada tanaman seringkali baru disadari oleh petani ketika kerusakan sudah meluas secara visual. Gejala awal seperti bercak kecil pada daun, perubahan warna klorosis, atau layu parsial sering luput dari pengamatan mata telanjang, terutama di lahan yang luas. Keterlambatan ini menyebabkan tindakan pencegahan menjadi tidak efektif karena patogen (jamur, bakteri, atau virus) telah menyebar ke tanaman lain.
+
+\textbf{2. Keterbatasan Tenaga Ahli (Pakar) di Lapangan} \\
+Identifikasi jenis penyakit tanaman secara akurat membutuhkan pengetahuan spesifik mengenai patologi tumbuhan. Jumlah penyuluh pertanian atau pakar agronomi sangat terbatas dibandingkan dengan jumlah petani dan luas lahan garapan di Indonesia. Akibatnya, petani seringkali melakukan diagnosa mandiri yang bersifat subjektif dan rentan kesalahan, yang berujung pada penanganan yang tidak tepat sasaran.
+
+\textbf{3. Penggunaan Pestisida yang Tidak Efisien} \\
+Sebagai dampak dari kesalahan diagnosa atau kepanikan akibat serangan hama, petani cenderung menggunakan pestisida secara berlebihan atau menggunakan jenis pestisida yang tidak sesuai ("broad-spectrum") tanpa mengetahui target spesifiknya. Hal ini tidak hanya memboroskan biaya produksi (modal petani), tetapi juga merusak lingkungan tanah, membunuh musuh alami hama, dan meninggalkan residu kimia berbahaya pada produk pertanian, yang menurunkan kualitas dan nilai jual hasil panen.
+
+\section{Usulan Solusi: Sistem Deteksi Penyakit Cerdas Berbasis Citra}
+
+\subsection{Judul Usulan Solusi}
+\textbf{AgriScan: Sistem Cerdas Deteksi Penyakit Tanaman Berbasis Computer Vision dan Deep Learning.}
+
+\subsection{Tujuan Usulan Solusi}
+Tujuan utama dari solusi ini adalah mengembangkan sistem otomatis yang mampu mengidentifikasi jenis penyakit atau hama pada tanaman secara cepat dan akurat hanya melalui citra digital (foto daun). Sistem ini bertujuan untuk membantu petani mendiagnosa kesehatan tanaman di fase sedini mungkin tanpa harus menunggu kedatangan pakar secara fisik.
+
+\subsection{Manfaat Usulan Solusi}
+\begin{itemize}
+    \item \textbf{Bagi Mahasiswa/Peneliti:} Menjadi media penerapan dan validasi metode Kecerdasan Buatan (Deep Learning) pada kasus dunia nyata (Real-world application), serta membuka peluang riset lanjutan mengenai optimalisasi model pada perangkat mobile (edge computing).
+    \item \textbf{Bagi Masyarakat/Petani:}
+    \begin{enumerate}
+        \item Meningkatkan efisiensi biaya produksi dengan mengurangi penggunaan pestisida yang tidak perlu (tepat guna).
+        \item Meminimalisir gagal panen melalui deteksi dini, sehingga volume produksi pangan tetap terjaga.
+        \item Memberdayakan petani dengan teknologi yang mudah diakses (misalnya melalui smartphone), sehingga mengurangi ketergantungan penuh pada penyuluh untuk diagnosa dasar.
+    \end{enumerate}
+\end{itemize}
+
+\section{Desain Solusi: Metode Learning (Deep Learning)}
+
+\subsection{Metode yang Digunakan dan Alasan Pemilihan}
+Metode Kecerdasan Buatan yang dipilih adalah konsep \textbf{Learning}, secara spesifik menggunakan \textbf{Convolutional Neural Networks (CNN)}.
+
+\textbf{Alasan Pemilihan Metode:}
+Permasalahan deteksi penyakit tanaman adalah masalah \textit{Visual Pattern Recognition} (pengenalan pola visual). Ciri-ciri penyakit tanaman—seperti bentuk bercak, tekstur luka, dan gradasi warna daun—memiliki variabilitas yang sangat tinggi yang sulit didefinisikan secara eksplisit dengan aturan logika (\textit{Reasoning}) atau pencarian ruang keadaan (\textit{Searching}).
+Metode \textit{Learning}, khususnya Deep Learning dengan CNN, dipilih karena kemampuannya melakukan \textit{Feature Extraction} secara otomatis dari data citra mentah. CNN terbukti menjadi state-of-the-art dalam tugas klasifikasi gambar karena kemampuannya menangkap fitur hierarkis (mulai dari tepi garis hingga bentuk kompleks penyakit) yang invarian terhadap translasi dan sedikit rotasi. Referensi penelitian seperti Wang et al. (2021) dan Liu et al. (2020) menunjukkan bahwa CNN mampu mencapai akurasi di atas 90\% untuk klasifikasi penyakit tanaman.
+
+\subsection{Cakupan Metode Learning}
+Penerapan metode Learning pada solusi ini mencakup:
+
+\textbf{1. Input Data (Data Kondisi Awal)} \\
+Input berupa citra digital daun tanaman (RGB). Data ini dikumpulkan dari lapangan dan diberi label oleh pakar (misalnya: "Daun Sehat", "Bercak Daun", "Karat Daun"). Sebelum masuk ke model, data mengalami pra-pemrosesan seperti \textit{Resizing} (misal ke 64x64 atau 224x224 piksel) dan normalisasi nilai piksel (0-255 menjadi 0-1).
+
+\textbf{2. Perhitungan dalam Model (Proses Learning)} \\
+Proses pembelajaran dilakukan dengan arsitektur CNN yang terdiri dari:
+\begin{itemize}
+    \item \textbf{Convolutional Layers:} Melakukan operasi konvolusi dengan filter (kernel) terpelajar untuk mendeteksi fitur visual. Rumus dasar konvolusi:
+    \[ O(i,j) = \sum_{m}\sum_{n} I(i+m, j+n) \cdot K(m,n) \]
+    di mana $I$ adalah citra input dan $K$ adalah kernel.
+    \item \textbf{Activation Function (ReLU):} Menambahkan non-linearitas untuk mempelajari pola kompleks ($f(x) = max(0, x)$).
+    \item \textbf{Pooling Layers:} Mengurangi dimensi spasial untuk efisiensi komputasi dan mengurangi overfitting.
+    \item \textbf{Fully Connected Layers:} Menggabungkan fitur yang diekstrak untuk melakukan klasifikasi akhir (output probabilitas untuk setiap kelas penyakit).
+\end{itemize}
+Selama proses pelatihan (\textit{Training}), model menghitung selisih antara prediksi dan label asli (\textit{Loss Function}, misal Cross-Entropy) dan memperbarui bobot jaringan menggunakan algoritma \textit{Backpropagation} dan optimizer (seperti Adam atau SGD).
+
+\textbf{3. Penerapan Usulan Solusi (Inferensi)} \\
+Setelah model terlatih (\textit{Trained Model}), model tersebut digunakan untuk memproses data baru. Petani memotret daun, citra dikirim ke model, dan model mengeluarkan output berupa kelas penyakit dengan tingkat kepercayaan (confidence score).
+
+\section{Studi Kasus: Simulasi Deteksi pada Citra Daun}
+
+\textbf{Satu Situasi Kasus Baru:} \\
+Seorang petani menemukan tanaman cabainya memiliki daun yang tidak berwarna hijau sempurna, melainkan memiliki bercak-bercak kecoklatan yang mencurigakan. Petani mengambil foto daun tersebut menggunakan aplikasi.
+
+\textbf{Record Data Baru:}
+\begin{itemize}
+    \item \textbf{Input:} Citra digital daun berukuran 64x64 piksel (disimulasikan dalam notebook). Secara visual, citra mengandung piksel hijau dominan dengan pola lingkaran berwarna coklat gelap tersebar acak.
+    \item \textbf{Proses Inferensi:} Citra tersebut dinormalisasi dan dilewatkan ke dalam model CNN yang telah dilatih. Model mendeteksi adanya fitur visual "tepi kontras tinggi berbentuk lingkaran gelap" pada channel warna tertentu.
+    \item \textbf{Output Prediksi:} Model menghasilkan probabilitas: \texttt{[Sehat: 0.02, Sakit: 0.98]}.
+    \item \textbf{Keputusan Sistem:} Karena probabilitas "Sakit" > threshold (0.5), sistem memberikan diagnosa: \textbf{"Terdeteksi Penyakit"}.
+\end{itemize}
+
+Simulasi teknis dari kasus ini telah diimplementasikan dalam file Jupyter Notebook (\texttt{solusi\_ai\_pertanian.ipynb}) yang menyertakan pembuatan dataset sintetis, pelatihan model sederhana, dan pengujian terhadap sampel citra daun yang "sakit".
+
+\section*{Daftar Pustaka}
+
+\begin{enumerate}
+    \item Agarwal, M., Gupta, S. K., \& Biswas, K. K. (2020). Development of efficient CNN model for tomato crop disease identification. \textit{Sustainable Computing: Informatics and Systems}, 28, 100407.
+    \item Liu, B., Zhang, Y., He, D., \& Li, Y. (2020). Identification of apple leaf diseases based on deep convolutional neural networks with transfer learning. \textit{Symmetry}, 10(5), 1-14.
+    \item Wang, G., Sun, Y., \& Wang, J. (2021). Automatic Image-Based Plant Disease Severity Estimation Using Deep Learning. \textit{Computational Intelligence and Neuroscience}, 2021.
+    \item Shrestha, G., Dehinwal, T., \& Hindersah, J. (2020). Comparative Analysis of Convolutional Neural Networks for Plant Disease Detection. \textit{IEEE Applied Signal Processing Conference}.
+\end{enumerate}
+
+\end{document}
